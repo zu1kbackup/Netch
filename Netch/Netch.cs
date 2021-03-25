@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Netch.Controllers;
 using Netch.Forms;
+using Netch.Services;
 using Netch.Utils;
 
 namespace Netch
@@ -84,9 +85,10 @@ namespace Netch
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             Application.ThreadException += Application_OnException;
 
+            DI.Register();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(Global.MainForm);
+            Application.Run(DI.GetService<MainForm>());
         }
 
         private static void AttachConsole()

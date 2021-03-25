@@ -5,16 +5,12 @@ using System.Text.Json;
 using System.Windows.Forms;
 using Netch.Forms;
 using Netch.Models;
+using Netch.Services;
 
 namespace Netch
 {
     public static class Global
     {
-        /// <summary>
-        ///     主窗体的静态实例
-        /// </summary>
-        private static readonly Lazy<MainForm> LazyMainForm = new(() => new MainForm());
-
         /// <summary>
         ///     用于读取和写入的配置
         /// </summary>
@@ -28,7 +24,7 @@ namespace Netch
         /// <summary>
         ///     主窗体的静态实例
         /// </summary>
-        public static MainForm MainForm => LazyMainForm.Value;
+        public static MainForm MainForm => DI.GetService<MainForm>();
 
         public static JsonSerializerOptions NewDefaultJsonSerializerOptions => new()
         {
